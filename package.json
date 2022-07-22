@@ -1,0 +1,38 @@
+{
+  "name": "@netless/y",
+  "version": "0.1.0",
+  "description": "Glue between netless app and crdt libraries",
+  "module": "./dist/index.mjs",
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./yjs": "./dist/yjs.mjs",
+    "./package.json": "./package.json"
+  },
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "unbuild"
+  },
+  "keywords": [
+    "netless",
+    "netless-app",
+    "crdt",
+    "yjs"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@netless/window-manager": ">=1",
+    "yjs": "*"
+  },
+  "peerDependenciesMeta": {
+    "yjs": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@netless/window-manager": "1.0.0-canary.47",
+    "js-base64": "^3.7.2",
+    "unbuild": "^0.7.6",
+    "white-web-sdk": "^2.16.27",
+    "yjs": "^13.5.39"
+  }
+}
