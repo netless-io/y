@@ -4,7 +4,10 @@ import * as Y from "yjs";
 import { fromUint8Array, toUint8Array } from "js-base64";
 
 export interface ConnectOptions {
-  /** shrink vector size when it is bigger than this number */
+  /**
+   * Shrink vector size when it is bigger than this number.
+   * default: 1000
+   */
   optimizeAt?: number;
 }
 

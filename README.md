@@ -24,7 +24,7 @@ type Value = any; // any JSON-serializable value
 
 class Vector {
   readonly size: number;
-  forEach(callback: (update: Value) => void): void;
+  forEach(callback: (update: Value, index: number) => void): void;
   push(update: Value): void;
   swap(updates: Value[]): void;
   on(event: "update", callback: (update: Value) => void): void;

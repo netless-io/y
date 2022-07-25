@@ -54,9 +54,9 @@ export class Vector extends Observable<"update"> {
   get size() {
     return Object.keys(this._storage.state).length;
   }
-  forEach(callback: (update: any) => void) {
+  forEach(callback: (update: any, index: number) => void) {
     const state = this._storage.state;
-    Object.keys(state).forEach((key) => callback(state[key]));
+    Object.keys(state).forEach((key, i) => callback(state[key], i));
   }
   push(update: any) {
     if (!this._context.isWritable) return;
@@ -81,7 +81,6 @@ export class Vector extends Observable<"update"> {
 
 /**
  * ```js
- * const doc = new Y.Doc();
  * const vector = createVector(context, 'doc');
  * // call vector.destroy() on destroy app
  * ```
