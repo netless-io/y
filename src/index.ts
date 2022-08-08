@@ -50,6 +50,13 @@ export class Vector extends Observable<"update"> {
         });
       })
     );
+
+    Object.keys(this._storage.state).forEach((key) => {
+      const [clientId, _clock] = key.split("@");
+      if (clientId === this._clientId) {
+        this._clock = Math.max(this._clock, Number(_clock) + 1);
+      }
+    });
   }
   get size() {
     return Object.keys(this._storage.state).length;
