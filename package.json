@@ -1,6 +1,6 @@
 {
   "name": "@netless/y",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Glue between netless app and crdt libraries",
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
