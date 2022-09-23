@@ -28,19 +28,17 @@ export class Vector extends Observable<"update"> {
   _clock = 1;
   _disposers: Function[] = [];
 
-  constructor(_context: AppContext, namespace?: string) {
+  constructor(_context: AppContext, namespace: string) {
     super();
 
     this._context = _context;
-    this._storage = namespace
-      ? _context.createStorage(namespace)
-      : _context.storage;
+    this._storage = _context.createStorage(namespace, {});
 
     this._clientId =
       _context.currentMember?.uid || Math.random().toString(36).slice(2, 8);
 
     this._disposers.push(
-      this._storage.addStateChangedListener((diff) => {
+      this._storage.on("stateChanged", (diff) => {
         Object.keys(diff).forEach((key) => {
           const [clientId, _clock] = key.split("@");
           if (clientId === this._clientId) return;
@@ -71,7 +69,7 @@ export class Vector extends Observable<"update"> {
   }
   swap(updates: Array<any>) {
     if (!this._context.isWritable) return;
-    this._storage.emptyStorage();
+    this._storage.resetState();
     let newState: Record<string, any> = {};
     for (const update of updates) {
       newState[this._clientId + "@" + this._clock++] = update;
@@ -92,6 +90,6 @@ export class Vector extends Observable<"update"> {
  * // call vector.destroy() on destroy app
  * ```
  */
-export function createVector(context: AppContext, namespace?: string) {
+export function createVector(context: AppContext, namespace: string) {
   return new Vector(context, namespace);
 }

@@ -1,15 +1,15 @@
 import type { AppContext, Storage } from "@netless/window-manager";
-import type {
-  DiffOne,
-  StorageStateChangedListener,
-} from "@netless/window-manager/dist/src/App/Storage";
+
+type DiffOne<T> = { oldValue?: T; newValue?: T };
+type Diff = Record<string, DiffOne<any>>;
+type StorageStateChangedListener = (diff: Diff) => void;
 
 export function createAppContext(storage: Storage): AppContext {
   return {
-    storage,
+    createStorage: () => storage,
     isWritable: true,
     currentMember: undefined,
-  } as AppContext;
+  } as unknown as AppContext;
 }
 
 export function createStorage(): Storage {
@@ -35,7 +35,7 @@ export function createStorage(): Storage {
     }
   }
 
-  function emptyStorage() {
+  function resetState() {
     let partial: Record<string, undefined> = {};
     for (let key in state) {
       partial[key] = undefined;
@@ -43,7 +43,7 @@ export function createStorage(): Storage {
     setState(partial);
   }
 
-  function addStateChangedListener(fn: StorageStateChangedListener) {
+  function on(_: string, fn: StorageStateChangedListener) {
     listeners.add(fn);
     return () => void listeners.delete(fn);
   }
@@ -53,7 +53,7 @@ export function createStorage(): Storage {
       return state;
     },
     setState,
-    emptyStorage,
-    addStateChangedListener,
+    resetState,
+    on,
   } as Storage;
 }

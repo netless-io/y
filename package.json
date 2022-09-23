@@ -1,6 +1,6 @@
 {
   "name": "@netless/y",
-  "version": "0.1.5",
+  "version": "0.2.0-canary.0",
   "description": "Glue between netless app and crdt libraries",
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
@@ -37,11 +37,11 @@
     }
   },
   "devDependencies": {
-    "@netless/window-manager": "1.0.0-canary.49",
+    "@netless/window-manager": "1.0.0-canary.57",
     "js-base64": "^3.7.2",
-    "unbuild": "^0.8.8",
-    "vitest": "^0.22.0",
-    "white-web-sdk": "^2.16.33",
+    "unbuild": "^0.8.11",
+    "vitest": "^0.23.4",
+    "white-web-sdk": "^2.16.35",
     "yjs": "^13.5.41"
   }
 }
