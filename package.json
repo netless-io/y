@@ -1,17 +1,17 @@
 {
   "name": "@netless/y",
-  "version": "0.2.0-canary.0",
+  "version": "0.2.0-canary.1",
   "description": "Glue between netless app and crdt libraries",
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
   "exports": {
     ".": {
-      "default": "./dist/index.mjs",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.mjs"
     },
     "./yjs": {
-      "default": "./dist/yjs.mjs",
-      "types": "./dist/yjs.d.ts"
+      "types": "./dist/yjs.d.ts",
+      "default": "./dist/yjs.mjs"
     },
     "./package.json": "./package.json"
   },
